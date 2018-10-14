@@ -38,7 +38,7 @@ import {
 } from '@angular/material';
 
 @NgModule({
-  imports: [
+  exports: [
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,

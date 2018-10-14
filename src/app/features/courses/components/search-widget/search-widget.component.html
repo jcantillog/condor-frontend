@@ -1,0 +1,38 @@
+<div class="container"
+     fxLayout="row"
+     fxLayoutAlign="center center">
+  Show me courses for
+  <mat-form-field fxLayout="column"
+                  fxLayoutAlign="start center">
+    <mat-select [(value)]="selectedProfession"
+                class="field"
+                disableRipple
+                panelClass="select-panel">
+      <mat-option value="All">
+        All Professions
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  in
+  <mat-form-field>
+    <mat-select [(value)]="selectedState"
+                class="field"
+                disableRipple
+                panelClass="select-panel">
+      <mat-option value="VT">
+        Vermont
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  sorted by
+  <mat-form-field>
+    <mat-select [(value)]="selectedOrdering"
+                class="field"
+                disableRipple
+                panelClass="select-panel">
+      <mat-option value="Popularity">
+        Popularity
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
