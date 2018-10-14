@@ -1,5 +1,6 @@
+import { selectCourses } from './../../store/reducers/index';
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 import * as fromStore from '../../store';
 
@@ -9,7 +10,10 @@ import * as fromStore from '../../store';
   styleUrls: ['./courses-page.component.css']
 })
 export class CoursesPageComponent implements OnInit {
-  constructor(private store: Store<fromStore.CoursesState>) {}
+  courses;
+  constructor(private store: Store<fromStore.CoursesState>) {
+    this.courses = this.store.pipe(select(fromStore.selectCourses));
+  }
 
   ngOnInit() {
     this.store.dispatch(new fromStore.FetchHotels());

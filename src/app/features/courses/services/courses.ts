@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -19,6 +20,8 @@ export class CoursesService {
   fetchAllCourses(): Observable<Course[]> {
     const queryUrl = `http://localhost:3000/api/hotel`;
 
-    return this.http.get<Course[]>(queryUrl);
+    return this.http
+      .get<Course[]>(queryUrl)
+      .pipe(map((response: any) => response.items));
   }
 }
