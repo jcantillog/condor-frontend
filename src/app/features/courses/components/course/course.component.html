@@ -1,3 +1,29 @@
-<p>
-  course works!
-</p>
+<mat-card class="card">
+  <mat-card-header class="header"
+                   fxLayout="row">
+    <div mat-card-avatar
+         class="image"
+         [ngStyle]="{'background-image':getImage(course.imageUrl)}"></div>
+    <span class="credits"
+          fxFlexAlign="center">{{course.maximumCredits}} CREDITS</span>
+  </mat-card-header>
+  <mat-card-content class="content"
+                    fxLayout="column">
+    <div class="main-content"
+         fxFlex="96px">
+      <span> <strong>{{course.name}}</strong></span>
+      <p>
+        {{course.provider?.name}}
+      </p>
+    </div>
+    <div class="footer"
+         fxFlex="59px"
+         fxFlexAlign="start"
+         fxLayout="row">
+      <span class="price"
+            fxFlexAlign="center">{{getCoursePrice()}}</span>
+
+    </div>
+  </mat-card-content>
+
+</mat-card>

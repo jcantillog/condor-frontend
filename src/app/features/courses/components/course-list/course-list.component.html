@@ -1,6 +1,9 @@
-<div class="container">
-  <div *ngFor="let course of courses">
-    {{course.name}}
-  </div>
+<div class="container"
+     fxLayout="row wrap"
+     fxLayoutGap="30px">
+  <tm-course *ngFor="let course of courses"
+             [course]="course"
+             fxFlex="30%">
+  </tm-course>
 
 </div>

@@ -1,15 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import { Course } from '../../models';
+import { formatCurrency } from '@angular/common';
 
 @Component({
-  selector: 'app-course',
+  selector: 'tm-course',
   templateUrl: './course.component.html',
   styleUrls: ['./course.component.css']
 })
 export class CourseComponent implements OnInit {
+  @Input()
+  course: Course;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {
+    this.course = {
+      name: '',
+      href: 'string',
+      imageUrl: '',
+      description: '',
+      price: null,
+      rating: null
+    };
   }
 
+  ngOnInit() {}
+
+  getImage(imageUrl) {
+    return `url("https://www.mytablemesa.com/${imageUrl}")`;
+  }
+
+  getCoursePrice() {
+    return this.course.price === 0 ? 'FREE' : `$${this.course.price}`;
+  }
 }
