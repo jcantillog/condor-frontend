@@ -16,6 +16,10 @@ export class CoursesPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(new fromStore.FetchHotels());
+    this.store.dispatch(new fromStore.FetchCourses());
+  }
+
+  onFilterChanged(e) {
+    this.store.dispatch(new fromStore.FilterCourses(e));
   }
 }

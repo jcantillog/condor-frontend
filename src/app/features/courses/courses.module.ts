@@ -15,6 +15,7 @@ import { CourseComponent } from './components/course/course.component';
 import { CoursesService } from './services/courses';
 
 import { reducers, effects } from './store';
+import { SearchInputComponent } from './components/search-input/search-input.component';
 
 const CoursesRoutes: Routes = [
   { path: 'courses', component: CoursesPageComponent }
@@ -36,7 +37,8 @@ const CoursesRoutes: Routes = [
     CoursesPageComponent,
     SearchWidgetComponent,
     CourseListComponent,
-    CourseComponent
+    CourseComponent,
+    SearchInputComponent
   ],
   providers: [CoursesService],
   exports: [CoursesPageComponent]

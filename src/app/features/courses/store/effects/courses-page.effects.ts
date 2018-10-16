@@ -11,20 +11,39 @@ import { CoursesService } from '../../services/courses';
 export class CoursesPageEffects {
   constructor(
     private actions$: Actions,
-    private hotelsService: CoursesService
+    private coursesService: CoursesService
   ) {}
 
   @Effect()
-  fetchAllHotels$: Observable<Action> = this.actions$.pipe(
+  fetchAllCourses$: Observable<Action> = this.actions$.pipe(
     ofType(CoursesPageActions.FETCH_COURSES),
-    switchMap((action: CoursesPageActions.FetchHotels) =>
-      this.hotelsService.fetchAllCourses().pipe(
+    switchMap((action: CoursesPageActions.FetchCourses) =>
+      this.coursesService.fetchAllCourses().pipe(
         // If successful, dispatch success action with result
         map(data => {
-          return new CoursesPageActions.FetchHotelsDone(data);
+          return new CoursesPageActions.FetchCoursesDone(data);
         }),
         // If request fails, dispatch failed action
-        catchError(error => of(new CoursesPageActions.FetchHotelsFailed(error)))
+        catchError(error =>
+          of(new CoursesPageActions.FetchCoursesFailed(error))
+        )
+      )
+    )
+  );
+
+  @Effect()
+  fetchCourses$: Observable<Action> = this.actions$.pipe(
+    ofType(CoursesPageActions.FILTER_COURSES),
+    switchMap((action: CoursesPageActions.FilterCourses) =>
+      this.coursesService.fetchCourses(action.payload).pipe(
+        // If successful, dispatch success action with result
+        map(data => {
+          return new CoursesPageActions.FetchCoursesDone(data);
+        }),
+        // If request fails, dispatch failed action
+        catchError(error =>
+          of(new CoursesPageActions.FetchCoursesFailed(error))
+        )
       )
     )
   );

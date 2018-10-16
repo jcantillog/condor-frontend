@@ -9,12 +9,13 @@ import { Course } from '../models';
 export class CoursesService {
   constructor(private http: HttpClient) {}
 
-  fetchCourses({ stars, name }): Observable<Course[]> {
+  fetchCourses(name): Observable<Course[]> {
     const nameFilter = name ? `name=${name}` : '';
-    const starsFilter = stars ? `&stars=${stars.join(',')}` : '';
-    const queryUrl = `http://localhost:3000/api/hotel?${nameFilter}${starsFilter}`;
+    const queryUrl = `http://localhost:3000/api/hotel?${nameFilter}`;
 
-    return this.http.get<Course[]>(queryUrl);
+    return this.http
+      .get<Course[]>(queryUrl)
+      .pipe(map((response: any) => response.items));
   }
 
   fetchAllCourses(): Observable<Course[]> {

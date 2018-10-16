@@ -9,23 +9,52 @@ export const FETCH_COURSES = `${ACTIONS_NAMESPACE} - Fetch Courses`;
 export const FETCH_COURSES_DONE = `${ACTIONS_NAMESPACE} - Fetch courses done`;
 export const FETCH_COURSES_FAILED = `${ACTIONS_NAMESPACE} - Fetch courses failed`;
 
+export const FILTER_COURSES = `${ACTIONS_NAMESPACE} - Filter Courses`;
+export const FILTER_COURSES_DONE = `${ACTIONS_NAMESPACE} - Filter courses done`;
+export const FILTER_COURSES_FAILED = `${ACTIONS_NAMESPACE} - Filter courses failed`;
+
 // Actions
-export class FetchHotels implements Action {
+export class FetchCourses implements Action {
   readonly type = FETCH_COURSES;
 
   constructor(public payload?: any) {}
 }
 
-export class FetchHotelsDone implements Action {
+export class FetchCoursesDone implements Action {
   readonly type = FETCH_COURSES_DONE;
 
   constructor(public payload: Course[]) {}
 }
 
-export class FetchHotelsFailed implements Action {
+export class FetchCoursesFailed implements Action {
   readonly type = FETCH_COURSES_FAILED;
 
   constructor(public payload: any) {}
 }
 
-export type Actions = FetchHotels | FetchHotelsDone | FetchHotelsFailed;
+// Actions
+export class FilterCourses implements Action {
+  readonly type = FILTER_COURSES;
+
+  constructor(public payload?: any) {}
+}
+
+export class FilterCoursesDone implements Action {
+  readonly type = FILTER_COURSES_DONE;
+
+  constructor(public payload: Course[]) {}
+}
+
+export class FilterCoursesFailed implements Action {
+  readonly type = FILTER_COURSES_FAILED;
+
+  constructor(public payload: any) {}
+}
+
+export type Actions =
+  | FetchCourses
+  | FetchCoursesDone
+  | FetchCoursesFailed
+  | FilterCourses
+  | FilterCoursesDone
+  | FilterCoursesFailed;

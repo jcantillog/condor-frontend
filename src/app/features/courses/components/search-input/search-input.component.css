@@ -1,0 +1,20 @@
+:host::ng-deep .mat-form-field-underline {
+  background-color: rgb(207, 224, 232);
+}
+
+.container {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+mat-label {
+  color: rgb(207, 224, 232);
+  font-weight: 400;
+}
+
+mat-icon {
+  color: #97cfff;
+  margin-right: 0.5rem;
+  position: relative;
+  bottom: -5px;
+}
