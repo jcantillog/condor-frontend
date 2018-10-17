@@ -1,4 +1,6 @@
 <tm-search-widget></tm-search-widget>
 <tm-search-input (filterChanged)="onFilterChanged($event)"
-                 (filterCleared)="onFilterCleared($event)"></tm-search-input>
+                 (filterCleared)="onFilterCleared($event)">
+</tm-search-input>
+<mat-spinner *ngIf="isCourseListLoading | async"></mat-spinner>
 <tm-course-list [courses]="courses | async"></tm-course-list>

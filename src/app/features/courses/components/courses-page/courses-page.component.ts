@@ -1,4 +1,3 @@
-import { selectCourses } from './../../store/reducers/index';
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 
@@ -11,8 +10,12 @@ import * as fromStore from '../../store';
 })
 export class CoursesPageComponent implements OnInit {
   courses;
+  isCourseListLoading;
   constructor(private store: Store<fromStore.CoursesState>) {
     this.courses = this.store.pipe(select(fromStore.selectCourses));
+    this.isCourseListLoading = this.store.pipe(
+        select(fromStore.selectCoursesLoading)
+    );
   }
 
   ngOnInit() {

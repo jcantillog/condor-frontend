@@ -9,18 +9,7 @@ export interface State {
 }
 
 const initialState: State = {
-  data: [
-    {
-      href: null,
-      name: 'Professional Ethics',
-      imageUrl: '/Content/uploads/6a20a838-173c-4b4d-ae25-01903f9da68d.jpg',
-      description:
-        // tslint:disable-next-line:max-line-length
-        'FL LMTs, 3 Ethics CEUs (or 2 Ethics, 1 elective):  \nProfessional ethics are not a set of rules.  They are guidelines that let us to write our own rules within the ethical framework of our profession.\nClear ethics are vital to business success. ',
-      price: 14.5,
-      rating: 4
-    }
-  ],
+  data: [],
   loaded: false,
   loading: false
 };
