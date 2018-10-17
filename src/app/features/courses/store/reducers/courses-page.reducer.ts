@@ -1,3 +1,5 @@
+import * as _ from 'lodash';
+
 import { FETCH_COURSES } from '../actions/courses-page.actions';
 import { Course } from '../../models/course.model';
 import * as fromCourses from '../actions/courses-page.actions';
@@ -36,9 +38,20 @@ export function reducer(
         ...state,
         loading: false
       };
+    case fromCourses.FETCH_MORE_COURSES_DONE:
+      return {
+        ...state,
+        data: mergeFetchedCourses(state.data, action.payload)
+      };
     default:
       return state;
   }
+}
+
+function mergeFetchedCourses(currentCourses, newCourses) {
+    console.log('FROM REDUCER: ', newCourses);
+    const courses = _.concat(currentCourses, newCourses);
+    return _.uniqBy(courses, 'id');
 }
 
 export const getCoursesLoading = (state: State) => state.loading;

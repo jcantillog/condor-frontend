@@ -18,8 +18,18 @@ export class CoursesService {
       .pipe(map((response: any) => response.items));
   }
 
+  fetchMoreCourses({ name, limit = 6, offset = 0 }): Observable<Course[]> {
+    console.log('FROM SERVICE: ', limit, offset);
+    const nameFilter = name ? `name=${name}` : '';
+    const queryUrl = `http://localhost:3000/api/hotel?${nameFilter}&limit=${limit}&offset=${offset}`;
+    console.log('URL: ', queryUrl);
+    return this.http
+        .get<Course[]>(queryUrl)
+        .pipe(map((response: any) => response.items));
+  }
+
   fetchAllCourses(): Observable<Course[]> {
-    const queryUrl = `http://localhost:3000/api/hotel`;
+    const queryUrl = `http://localhost:3000/api/hotel?limit=6`;
 
     return this.http
       .get<Course[]>(queryUrl)

@@ -11,6 +11,7 @@ import * as fromStore from '../../store';
 export class CoursesPageComponent implements OnInit {
   courses;
   isCourseListLoading;
+  fetchedPages = 1;
   constructor(private store: Store<fromStore.CoursesState>) {
     this.courses = this.store.pipe(select(fromStore.selectCourses));
     this.isCourseListLoading = this.store.pipe(
@@ -28,5 +29,16 @@ export class CoursesPageComponent implements OnInit {
 
   onFilterCleared() {
     this.store.dispatch(new fromStore.FetchCourses());
+  }
+
+  onScroll() {
+    this.fetchedPages++;
+    console.log(this.fetchedPages);
+    this.store.dispatch(
+        new fromStore.FetchMoreCourses({
+            limit: 6,
+            offset: this.fetchedPages * 6
+        })
+    );
   }
 }

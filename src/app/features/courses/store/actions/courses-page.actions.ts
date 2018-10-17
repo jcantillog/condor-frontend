@@ -13,6 +13,10 @@ export const FILTER_COURSES = `${ACTIONS_NAMESPACE} - Filter Courses`;
 export const FILTER_COURSES_DONE = `${ACTIONS_NAMESPACE} - Filter courses done`;
 export const FILTER_COURSES_FAILED = `${ACTIONS_NAMESPACE} - Filter courses failed`;
 
+export const FETCH_MORE_COURSES = `${ACTIONS_NAMESPACE} - Fetch more courses`;
+export const FETCH_MORE_COURSES_DONE = `${ACTIONS_NAMESPACE} - Fetch more courses done`;
+export const FETCH_MORE_COURSES_FAILED = `${ACTIONS_NAMESPACE} - Fetch more courses failed`;
+
 // Actions
 export class FetchCourses implements Action {
   readonly type = FETCH_COURSES;
@@ -47,8 +51,22 @@ export class FilterCoursesDone implements Action {
 
 export class FilterCoursesFailed implements Action {
   readonly type = FILTER_COURSES_FAILED;
-
   constructor(public payload: any) {}
+}
+
+export class FetchMoreCourses implements Action {
+    readonly type = FETCH_MORE_COURSES;
+    constructor(public payload?: any) {}
+}
+
+export class FetchMoreCoursesDone implements Action {
+    readonly type = FETCH_MORE_COURSES_DONE;
+    constructor(public payload: Course[]) {}
+}
+
+export class FetchMoreCoursesFailed implements Action {
+    readonly type = FETCH_MORE_COURSES_FAILED;
+    constructor(public payload: any) {}
 }
 
 export type Actions =
@@ -57,4 +75,7 @@ export type Actions =
   | FetchCoursesFailed
   | FilterCourses
   | FilterCoursesDone
-  | FilterCoursesFailed;
+  | FilterCoursesFailed
+  | FetchMoreCourses
+  | FetchMoreCoursesDone
+  | FetchMoreCoursesFailed;

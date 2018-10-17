@@ -1,3 +1,4 @@
+import { FETCH_MORE_COURSES } from './../actions/courses-page.actions';
 import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
@@ -46,5 +47,22 @@ export class CoursesPageEffects {
         )
       )
     )
+  );
+
+  @Effect()
+  fetchMoreCourses$: Observable<Action> = this.actions$.pipe(
+      ofType(CoursesPageActions.FETCH_MORE_COURSES),
+      switchMap((action: CoursesPageActions.FetchMoreCourses) =>
+          this.coursesService.fetchMoreCourses(action.payload).pipe(
+              // If successful, dispatch success action with result
+              map(data => {
+                  return new CoursesPageActions.FetchMoreCoursesDone(data);
+              }),
+              // If request fails, dispatch failed action
+              catchError(error =>
+                  of(new CoursesPageActions.FetchMoreCoursesFailed(error))
+              )
+          )
+      )
   );
 }

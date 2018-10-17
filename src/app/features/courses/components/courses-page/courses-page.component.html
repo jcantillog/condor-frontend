@@ -4,3 +4,7 @@
 </tm-search-input>
 <mat-spinner *ngIf="isCourseListLoading | async"></mat-spinner>
 <tm-course-list [courses]="courses | async"></tm-course-list>
+<div infiniteScroll
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="50"
+     (scrolled)="onScroll()"></div>
