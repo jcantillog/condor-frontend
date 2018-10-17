@@ -11,7 +11,7 @@ export class CoursesService {
 
   fetchCourses(name): Observable<Course[]> {
     const nameFilter = name ? `name=${name}` : '';
-    const queryUrl = `http://localhost:3000/api/hotel?${nameFilter}`;
+    const queryUrl = `http://localhost:3000/courses?${nameFilter}`;
 
     return this.http
       .get<Course[]>(queryUrl)
@@ -20,14 +20,14 @@ export class CoursesService {
 
   fetchMoreCourses({ name, limit = 6, offset = 0 }): Observable<Course[]> {
     const nameFilter = name ? `name=${name}` : '';
-    const queryUrl = `http://localhost:3000/api/hotel?${nameFilter}&limit=${limit}&offset=${offset}`;
+    const queryUrl = `http://localhost:3000/courses?${nameFilter}&limit=${limit}&offset=${offset}`;
     return this.http
         .get<Course[]>(queryUrl)
         .pipe(map((response: any) => response.items));
   }
 
   fetchAllCourses(): Observable<Course[]> {
-    const queryUrl = `http://localhost:3000/api/hotel?limit=6`;
+    const queryUrl = `http://localhost:3000/courses?limit=6`;
 
     return this.http
       .get<Course[]>(queryUrl)
