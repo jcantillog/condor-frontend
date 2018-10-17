@@ -49,7 +49,6 @@ export function reducer(
 }
 
 function mergeFetchedCourses(currentCourses, newCourses) {
-    console.log('FROM REDUCER: ', newCourses);
     const courses = _.concat(currentCourses, newCourses);
     return _.uniqBy(courses, 'id');
 }
