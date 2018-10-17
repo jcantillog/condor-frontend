@@ -22,4 +22,8 @@ export class CoursesPageComponent implements OnInit {
   onFilterChanged(e) {
     this.store.dispatch(new fromStore.FilterCourses(e));
   }
+
+  onFilterCleared() {
+    this.store.dispatch(new fromStore.FetchCourses());
+  }
 }

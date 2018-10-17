@@ -21,7 +21,18 @@
          fxFlexAlign="start"
          fxLayout="row">
       <span class="price"
+            fxFlex="50%"
             fxFlexAlign="center">{{getCoursePrice()}}</span>
+
+      <div fxFlex="50%"
+           fxFlexAlign="center"
+           fxLayout="row"
+           fxLayoutAlign="center end">
+        <mat-icon class="star"
+                  matPrefix
+                  *ngFor="let star of stars"
+                  [ngStyle]="{color:getStarColor(star)}">{{getStarIcon(star)}}</mat-icon>
+      </div>
 
     </div>
   </mat-card-content>

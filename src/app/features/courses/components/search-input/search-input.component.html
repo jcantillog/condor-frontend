@@ -4,8 +4,19 @@
                   [floatLabel]="'never'">
     <mat-label floatLabel="never">Search all courses</mat-label>
     <input #filterInput
+           [(ngModel)]="filterValue"
            matInput
            floatLabel="never">
-    <mat-icon matPrefix>search</mat-icon>
+    <mat-icon class="search-icon"
+              matPrefix>search</mat-icon>
+    <button class="crearButton"
+            mat-button
+            *ngIf="filterValue"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="clearFilter()">
+      <mat-icon>close</mat-icon>
+    </button>
   </mat-form-field>
 </div>

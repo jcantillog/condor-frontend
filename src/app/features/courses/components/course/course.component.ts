@@ -10,6 +10,7 @@ import { formatCurrency } from '@angular/common';
 export class CourseComponent implements OnInit {
   @Input()
   course: Course;
+  stars: number[];
 
   constructor() {
     this.course = {
@@ -22,7 +23,17 @@ export class CourseComponent implements OnInit {
     };
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // Filling stars
+      this.stars = Array(5)
+          .fill(0)
+          .map((value, index) => {
+            const starPosition = index + 1;
+            return this.course.rating > starPosition
+                ? 1
+                : (starPosition - this.course.rating) % 1;
+          });
+  }
 
   getImage(imageUrl) {
     return `url("https://www.mytablemesa.com/${imageUrl}")`;
@@ -30,5 +41,15 @@ export class CourseComponent implements OnInit {
 
   getCoursePrice() {
     return this.course.price === 0 ? 'FREE' : `$${this.course.price}`;
+  }
+
+  getStarColor(percentFill) {
+    const grayColor = '#d1e1ef';
+    const yellowColor = '#f6c943';
+    return percentFill === 0 ? grayColor : yellowColor;
+  }
+
+  getStarIcon(percentFill) {
+    return percentFill > 0 && percentFill < 1 ? 'star_half' : 'star';
   }
 }

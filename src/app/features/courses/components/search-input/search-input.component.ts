@@ -19,8 +19,13 @@ export class SearchInputComponent implements OnInit {
   @ViewChild('filterInput')
   filterInput: ElementRef;
 
+  filterValue = '';
+
   @Output()
   filterChanged = new EventEmitter<string>();
+
+  @Output()
+  filterCleared = new EventEmitter<void>();
 
   constructor() {}
 
@@ -34,5 +39,10 @@ export class SearchInputComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  clearFilter() {
+    this.filterValue = '';
+    this.filterCleared.emit();
   }
 }
